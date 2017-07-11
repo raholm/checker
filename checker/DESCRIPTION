@@ -1,0 +1,9 @@
+Package: checker
+Title: Utility functions for checking conditions
+Version: 0.0.0.9000
+Authors@R: person("Rasmus", "Holm", email = "rasmus.holm723@gmail.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.4.1)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
