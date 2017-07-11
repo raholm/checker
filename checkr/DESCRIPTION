@@ -1,4 +1,4 @@
-Package: checker
+Package: checkr
 Title: Utility functions for checking conditions
 Version: 0.0.0.9000
 Authors@R: person("Rasmus", "Holm", email = "rasmus.holm723@gmail.com", role = c("aut", "cre"))
