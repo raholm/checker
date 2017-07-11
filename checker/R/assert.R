@@ -1,6 +1,6 @@
 #' Asserts that the input is string.
 #'
-#' @param text Input that is checked for being a string.
+#' @param text Input that is checked for being a string
 assert_string <- function(text) {
     if (!(is.character(text) & length(text) == 1)) {
         stop(paste("Input", text, "is not a string.", sep=" "))
@@ -23,7 +23,7 @@ assert_character <- function(character, null.ok=FALSE) {
 
 #' Asserts that input is integer
 #'
-#' @param number Input that is checked for being an integer.
+#' @param number Input that is checked for being an integer
 #' @param lower Lower bound
 #' @param upper Upper bound
 assert_integer <- function(number, lower=-Inf, upper=Inf) {
@@ -51,6 +51,11 @@ assert_integer <- function(number, lower=-Inf, upper=Inf) {
     }
 }
 
+
+#' Asserts that input string contains pattern
+#'
+#' @param string Input text that is being checked for pattern
+#' @param pattern Pattern to check for
 assert_regexp <- function(string, pattern) {
     assert_string(string)
     assert_string(pattern)
@@ -97,9 +102,10 @@ assert_file_exists <- function(filename) {
     }
 }
 
-#' Asserts that the input is an existing json file
+#' Asserts that the input is of specified filetype
 #'
-#' @param filename Input that is chcked for being an existing json file.
+#' @param filename Input that is checked for being specified filetype.
+#' @param type Filetype to check for
 assert_filetype <- function(filename, type) {
     assert_file_exists(filename)
     assert_regexp(type, "(\\.)\\w+")
