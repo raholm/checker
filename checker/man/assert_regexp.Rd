@@ -2,15 +2,15 @@
 % Please edit documentation in R/assert.R
 \name{assert_regexp}
 \alias{assert_regexp}
-\title{Asserts that input string contains pattern}
+\title{Asserts that input contains pattern}
 \usage{
-assert_regexp(string, pattern)
+assert_regexp(input, pattern)
 }
 \arguments{
-\item{string}{Input text that is being checked for pattern}
-
 \item{pattern}{Pattern to check for}
+
+\item{string}{Input text that is being checked for pattern}
 }
 \description{
-Asserts that input string contains pattern
+Asserts that input contains pattern
 }

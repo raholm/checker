@@ -4,10 +4,10 @@
 \alias{assert_integer}
 \title{Asserts that input is integer}
 \usage{
-assert_integer(number, lower = -Inf, upper = Inf)
+assert_integer(input, lower = -Inf, upper = Inf)
 }
 \arguments{
-\item{number}{Input that is checked for being an integer}
+\item{input}{Input that is checked for being an integer}
 
 \item{lower}{Lower bound}
 

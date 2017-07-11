@@ -4,10 +4,10 @@
 \alias{assert_character}
 \title{Assets that the input is character.}
 \usage{
-assert_character(character, null.ok = FALSE)
+assert_character(input, null.ok = FALSE)
 }
 \arguments{
-\item{character}{Input that is checked for being a string}
+\item{input}{Input that is checked for being a character}
 
 \item{null.ok}{If true, will not assert null value}
 }

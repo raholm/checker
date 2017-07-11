@@ -1,76 +1,75 @@
 #' Asserts that the input is string.
 #'
-#' @param text Input that is checked for being a string
-assert_string <- function(text) {
-    if (!(is.character(text) & length(text) == 1)) {
-        stop(paste("Input", text, "is not a string.", sep=" "))
+#' @param input Input that is checked for being a string
+assert_string <- function(input) {
+    if (!(is.character(input) & length(input) == 1)) {
+        stop(paste("Input is not a string.", sep=" "))
     }
 }
 
 #' Assets that the input is character.
 #'
-#' @param character Input that is checked for being a string
+#' @param input Input that is checked for being a character
 #' @param null.ok If true, will not assert null value
-assert_character <- function(character, null.ok=FALSE) {
-    if (!null.ok & is.null(character)) {
-        stop("Input character is null.")
+assert_character <- function(input, null.ok=FALSE) {
+    if (!null.ok & is.null(input)) {
+        stop("Input is null.")
     }
 
-    if (!is.character(character) & !is.null(character)) {
-        stop(paste("Input", character, "is not a character.", sep=" "))
+    if (!is.character(input) & !is.null(input)) {
+        stop("Input is not a character.")
     }
 }
 
 #' Asserts that input is integer
 #'
-#' @param number Input that is checked for being an integer
+#' @param input Input that is checked for being an integer
 #' @param lower Lower bound
 #' @param upper Upper bound
-assert_integer <- function(number, lower=-Inf, upper=Inf) {
-    if (!(length(number) == 1)) {
-        stop(paste("Input", number, "is not a integer.", sep=" "))
+assert_integer <- function(input, lower=-Inf, upper=Inf) {
+    if (!(length(input) == 1)) {
+        stop("Input is not an integer.")
     }
 
-    if (!(number %% 1 == 0 )) {
-        stop(paste("Input", number, "is not a integer.", sep=" "))
+    if (!(input %% 1 == 0 )) {
+        stop("Input is not an integer.")
     }
 
     lower <- as.numeric(lower)
     upper <- as.numeric(upper)
 
     if (!is.null(lower)) {
-        if (number < lower) {
-            stop(paste("Input", number, "is less than.", lower, sep=" "))
+        if (input < lower) {
+            stop(paste("Input is less than ", lower, ".", sep=""))
         }
     }
 
     if (!is.null(upper)) {
-        if (number > upper) {
-            stop(paste("Input", number, "is greater than.", upper, sep=" "))
+        if (input > upper) {
+            stop(paste("Input is greater than ", upper, ".", sep=""))
         }
     }
 }
 
-
-#' Asserts that input string contains pattern
+#' Asserts that input contains pattern
 #'
 #' @param string Input text that is being checked for pattern
 #' @param pattern Pattern to check for
-assert_regexp <- function(string, pattern) {
-    assert_string(string)
+assert_regexp <- function(input, pattern) {
+    assert_string(input)
     assert_string(pattern)
 
-    if (!grepl(pattern, string)) {
-        stop(paste(string, " do not contain the pattern ", pattern, ".", sep=""))
+    if (!grepl(pattern, input)) {
+        stop(paste("Input do not contain the pattern ", pattern, ".", sep=""))
     }
 }
 
 #' Asserts that input is of specified type
-assert_type <- function(object, type) {
-    if (type == "tbl_df" & !dplyr::is.tbl(object)) {
-        stop("Object is not a tbl_df.")
-    } else if (typeof(object) != type) {
-        stop(paste("Object is not of type ", type, ".", sep=""))
+assert_type <- function(input, type) {
+    if (type == "tbl_df" & !dplyr::is.tbl(input)) {
+        stop("Input is not a tbl_df.")
+    } else if (typeof(input) != type) {
+        stop(paste("Input is not of type ", type, ".", sep=""))
     }
 }
 
@@ -86,7 +85,7 @@ assert_subset <- function(set, subset, null.ok=FALSE) {
 
     for (i in seq_along(subset)) {
         if (!(subset[i] %in% set)) {
-            stop(paste(subset[i], " is not in ", set, ".", sep=""))
+            stop(paste(subset[i], " is not in present in the set.", sep=""))
         }
     }
 }

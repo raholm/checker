@@ -4,7 +4,7 @@
 \alias{assert_type}
 \title{Asserts that input is of specified type}
 \usage{
-assert_type(object, type)
+assert_type(input, type)
 }
 \description{
 Asserts that input is of specified type

@@ -4,10 +4,10 @@
 \alias{assert_string}
 \title{Asserts that the input is string.}
 \usage{
-assert_string(text)
+assert_string(input)
 }
 \arguments{
-\item{text}{Input that is checked for being a string}
+\item{input}{Input that is checked for being a string}
 }
 \description{
 Asserts that the input is string.
