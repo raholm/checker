@@ -53,7 +53,7 @@ assert_integer <- function(input, lower=-Inf, upper=Inf) {
 
 #' Asserts that input contains pattern
 #'
-#' @param string Input text that is being checked for pattern
+#' @param input Input that is being checked for pattern
 #' @param pattern Pattern to check for
 assert_regexp <- function(input, pattern) {
     assert_string(input)
@@ -65,6 +65,9 @@ assert_regexp <- function(input, pattern) {
 }
 
 #' Asserts that input is of specified type
+#'
+#' @param input Input that is being checked for type
+#' @param type Type to check for
 assert_type <- function(input, type) {
     if (type == "tbl_df" & !dplyr::is.tbl(input)) {
         stop("Input is not a tbl_df.")
@@ -75,41 +78,41 @@ assert_type <- function(input, type) {
 
 #' Asserts that input is subset of a set
 #'
+#' @param input The input to check for being a subset
 #' @param set The full set
-#' @param subset The subset
 #' @param null.ok If set to TRUE, then null subset is fine
-assert_subset <- function(set, subset, null.ok=FALSE) {
-    if (!null.ok & is.null(subset)) {
-        stop("Input subset is null.")
+assert_subset <- function(input, set, null.ok=FALSE) {
+    if (!null.ok & is.null(input)) {
+        stop("Input is null.")
     }
 
-    for (i in seq_along(subset)) {
-        if (!(subset[i] %in% set)) {
-            stop(paste(subset[i], " is not in present in the set.", sep=""))
+    for (i in seq_along(input)) {
+        if (!(input[i] %in% set)) {
+            stop(paste(input[i], " is not in present in the set.", sep=""))
         }
     }
 }
 
 #' Asserts that the input is an existing file.
 #'
-#' @param filename Input that is checked for being an existing file.
-assert_file_exists <- function(filename) {
-    assert_string(filename)
+#' @param input Input that is checked for being an existing file.
+assert_file_exists <- function(input) {
+    assert_string(input)
 
-    if (!file.exists(filename)) {
-        stop(paste("File", filename, "does not exist.", sep=" "))
+    if (!file.exists(input)) {
+        stop(paste("File", input, "does not exist.", sep=" "))
     }
 }
 
 #' Asserts that the input is of specified filetype
 #'
-#' @param filename Input that is checked for being specified filetype.
+#' @param input Input that is checked for being specified filetype.
 #' @param type Filetype to check for
-assert_filetype <- function(filename, type) {
-    assert_file_exists(filename)
+assert_filetype <- function(input, type) {
+    assert_file_exists(input)
     assert_regexp(type, "(\\.)\\w+")
 
-    if (!endsWith(filename, type)) {
-        stop(paste("File ", filename, " does not end with ", type, ".", sep=""))
+    if (!endsWith(input, type)) {
+        stop(paste("File ", input, " does not end with ", type, ".", sep=""))
     }
 }

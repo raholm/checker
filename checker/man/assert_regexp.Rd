@@ -7,9 +7,9 @@
 assert_regexp(input, pattern)
 }
 \arguments{
-\item{pattern}{Pattern to check for}
+\item{input}{Input that is being checked for pattern}
 
-\item{string}{Input text that is being checked for pattern}
+\item{pattern}{Pattern to check for}
 }
 \description{
 Asserts that input contains pattern

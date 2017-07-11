@@ -6,6 +6,11 @@
 \usage{
 assert_type(input, type)
 }
+\arguments{
+\item{input}{Input that is being checked for type}
+
+\item{type}{Type to check for}
+}
 \description{
 Asserts that input is of specified type
 }

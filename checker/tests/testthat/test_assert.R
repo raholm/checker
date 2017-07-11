@@ -50,15 +50,15 @@ test_that("assert_regexp does not raise an error for valid input", {
 
 
 test_that("assert_subset raises an error for invalid input", {
-    expect_error(assert_subset(c("a", "b", "c"), NULL))
-    expect_error(assert_subset(c("a", "b", "c"), c("a", "d")))
-    expect_error(assert_subset(c(1, 2, 3), c(1, 4)))
+    expect_error(assert_subset(NULL, c("a", "b", "c"), null.ok=FALSE))
+    expect_error(assert_subset(c("a", "d"), c("a", "b", "c")))
+    expect_error(assert_subset(c(1, 4), c(1, 2, 3)))
 })
 
 test_that("assert_subset does not raise an error for valid input", {
-    expect_message(assert_subset(c("a", "b", "c"), NULL, null.ok=TRUE), NA)
-    expect_message(assert_subset(c("a", "b", "c"), c("a", "c")), NA)
-    expect_message(assert_subset(c(1, 2, 3), c(1, 3)), NA)
+    expect_message(assert_subset(NULL, c("a", "b", "c"), null.ok=TRUE), NA)
+    expect_message(assert_subset(c("a", "c"), c("a", "b", "c")), NA)
+    expect_message(assert_subset(c(1, 3), c(1, 2, 3)), NA)
 })
 
 test_that("assert_file_exists raises an error for invalid file", {

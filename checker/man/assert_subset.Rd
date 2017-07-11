@@ -4,12 +4,12 @@
 \alias{assert_subset}
 \title{Asserts that input is subset of a set}
 \usage{
-assert_subset(set, subset, null.ok = FALSE)
+assert_subset(input, set, null.ok = FALSE)
 }
 \arguments{
-\item{set}{The full set}
+\item{input}{The input to check for being a subset}
 
-\item{subset}{The subset}
+\item{set}{The full set}
 
 \item{null.ok}{If set to TRUE, then null subset is fine}
 }

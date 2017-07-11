@@ -4,10 +4,10 @@
 \alias{assert_filetype}
 \title{Asserts that the input is of specified filetype}
 \usage{
-assert_filetype(filename, type)
+assert_filetype(input, type)
 }
 \arguments{
-\item{filename}{Input that is checked for being specified filetype.}
+\item{input}{Input that is checked for being specified filetype.}
 
 \item{type}{Filetype to check for}
 }

@@ -4,10 +4,10 @@
 \alias{assert_file_exists}
 \title{Asserts that the input is an existing file.}
 \usage{
-assert_file_exists(filename)
+assert_file_exists(input)
 }
 \arguments{
-\item{filename}{Input that is checked for being an existing file.}
+\item{input}{Input that is checked for being an existing file.}
 }
 \description{
 Asserts that the input is an existing file.
