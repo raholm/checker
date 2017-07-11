@@ -49,7 +49,15 @@ assert_integer <- function(number, lower=-Inf, upper=Inf) {
             stop(paste("Input", number, "is greater than.", upper, sep=" "))
         }
     }
+}
 
+assert_regexp <- function(string, pattern) {
+    assert_string(string)
+    assert_string(pattern)
+
+    if (!grepl(pattern, string)) {
+        stop(paste(string, " do not contain the pattern ", pattern, ".", sep=""))
+    }
 }
 
 #' Asserts that input is of specified type
@@ -92,10 +100,11 @@ assert_file_exists <- function(filename) {
 #' Asserts that the input is an existing json file
 #'
 #' @param filename Input that is chcked for being an existing json file.
-assert_json_file <- function(filename) {
+assert_filetype <- function(filename, type) {
     assert_file_exists(filename)
+    assert_regexp(type, "(\\.)\\w+")
 
-    if (!endsWith(filename, ".json")) {
-        stop(paste("File", filename, "does not end with '.json'.", sep=" "))
+    if (!endsWith(filename, type)) {
+        stop(paste("File ", filename, " does not end with ", type, ".", sep=""))
     }
 }

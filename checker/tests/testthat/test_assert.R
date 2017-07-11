@@ -37,6 +37,18 @@ test_that("assert_integer does not raise an error for valid input", {
     expect_message(assert_integer(1, lower=0, upper=1), NA)
 })
 
+test_that("assert_regexp raises an error for invalid input", {
+    expect_error(assert_regexp("R", "\\."))
+    expect_error(assert_regexp("abc", "(abd)"))
+})
+
+test_that("assert_regexp does not raise an error for valid input", {
+    expect_message(assert_regexp(".json", "\\."), NA)
+    expect_message(assert_regexp(".json", "(\\.)\\w+"), NA)
+    expect_message(assert_regexp("abc", "(abc)"), NA)
+})
+
+
 test_that("assert_subset raises an error for invalid input", {
     expect_error(assert_subset(c("a", "b", "c"), NULL))
     expect_error(assert_subset(c("a", "b", "c"), c("a", "d")))
@@ -57,11 +69,11 @@ test_that("assert_file_exists does not an error for valid file", {
     expect_message(assert_file_exists("./files/empty_file.valid"), NA)
 })
 
-test_that("assert_json_file raises an error for invalid file", {
+test_that("assert_filetype raises an error for incorrect filetype", {
     expect_message(assert_file_exists("./files/empty_file.valid"), NA)
-    expect_error(assert_json_file("./files/empty_file.valid"))
+    expect_error(assert_filetype("./files/empty_file.valid", ".json"))
 })
 
-test_that("assert_json_file does not raise an error for valid file", {
-    expect_message(assert_json_file("./files/empty_file.json"), NA)
+test_that("assert_filetype does not raise an error for correct filetype", {
+    expect_message(assert_filetype("./files/empty_file.json", ".json"), NA)
 })
