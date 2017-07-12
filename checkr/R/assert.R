@@ -79,8 +79,10 @@ assert_regexp <- function(input, pattern) {
 #'
 #' @export
 assert_type <- function(input, type) {
-    if (type == "tbl_df" & !dplyr::is.tbl(input)) {
-        stop("Input is not a tbl_df.")
+    if (type == "tbl_df") {
+        if (!dplyr::is.tbl(input)) {
+            stop("Input is not a tbl_df.")
+        }
     } else if (typeof(input) != type) {
         stop(paste("Input is not of type ", type, ".", sep=""))
     }
