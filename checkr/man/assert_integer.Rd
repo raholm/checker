@@ -4,7 +4,7 @@
 \alias{assert_integer}
 \title{Asserts that input is integer}
 \usage{
-assert_integer(input, lower = -Inf, upper = Inf)
+assert_integer(input, lower = -Inf, upper = Inf, null.ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is checked for being an integer}
