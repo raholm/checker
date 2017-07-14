@@ -2,16 +2,18 @@ test_that("assert_is_string raises an error for invalid input", {
     expect_error(assert_string(123))
     expect_error(assert_string(list(a="test string")))
     expect_error(assert_string(c("a", "b", "c")))
+    expect_error(assert_string(NULL, null.ok=FALSE))
 })
 
 test_that("assert_is_string does not raise an error for valid input", {
     expect_message(assert_string("test string"), NA)
+    expect_message(assert_string(NULL, null.ok=TRUE), NA)
 })
 
 test_that("assert_character raises an error for invalid input", {
     expect_error(assert_character(123))
     expect_error(assert_character(list(a="test_string")))
-        expect_error(assert_character(NULL, null.ok=FALSE))
+    expect_error(assert_character(NULL, null.ok=FALSE))
 })
 
 test_that("assert_character does not raise an error for valid input", {
@@ -27,6 +29,7 @@ test_that("assert_integer raises an error for invalid input", {
     expect_error(assert_integer(1.5))
     expect_error(assert_integer(1, lower=2))
     expect_error(assert_integer(1, upper=0))
+    expect_error(assert_integer(NULL, null.ok=FALSE))
 })
 
 test_that("assert_integer does not raise an error for valid input", {
@@ -35,7 +38,21 @@ test_that("assert_integer does not raise an error for valid input", {
     expect_message(assert_integer(0), NA)
     expect_message(assert_integer(0, lower=0, upper=1), NA)
     expect_message(assert_integer(1, lower=0, upper=1), NA)
+    expect_message(assert_integer(NULL, null.ok=TRUE), NA)
 })
+
+test_that("assert_factor raises an error for invalid input", {
+    expect_error(assert_factor(123))
+    expect_error(assert_factor("123"))
+    expect_error(assert_factor(list(a="test_string")))
+    expect_error(assert_factor(NULL, null.ok=FALSE))
+})
+
+test_that("assert_factor does not raise an error for valid input", {
+    expect_message(assert_factor(as.factor(c("a", "b", "c"))), NA)
+    expect_message(assert_factor(NULL, null.ok=TRUE), NA)
+})
+
 
 test_that("assert_regexp raises an error for invalid input", {
     expect_error(assert_regexp("R", "\\."))

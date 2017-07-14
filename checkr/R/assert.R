@@ -3,7 +3,9 @@
 #' @param input Input that is checked for being a string
 #'
 #' @export
-assert_string <- function(input) {
+assert_string <- function(input, null.ok=FALSE) {
+    if (is.null(input) & null.ok) return()
+
     if (!(is.character(input) & length(input) == 1)) {
         stop(paste("Input is not a string.", sep=" "))
     }
@@ -32,7 +34,9 @@ assert_character <- function(input, null.ok=FALSE) {
 #' @param upper Upper bound
 #'
 #' @export
-assert_integer <- function(input, lower=-Inf, upper=Inf) {
+assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
+    if (is.null(input) & null.ok) return()
+
     if (!(length(input) == 1)) {
         stop("Input is not an integer.")
     }
@@ -54,6 +58,19 @@ assert_integer <- function(input, lower=-Inf, upper=Inf) {
         if (input > upper) {
             stop(paste("Input is greater than ", upper, ".", sep=""))
         }
+    }
+}
+
+#' Asserts that input is factor
+#'
+#' @param input Input that is being checked for being a factor
+#'
+#' @export
+assert_factor <- function(input, null.ok=FALSE) {
+    if (is.null(input) & null.ok) return()
+
+    if (!is.factor(input)) {
+        stop("Input is not a factor")
     }
 }
 
