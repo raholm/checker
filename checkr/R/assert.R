@@ -4,10 +4,12 @@
 #'
 #' @export
 assert_string <- function(input, null.ok=FALSE) {
+    call <- match.call()
+
     if (is.null(input) & null.ok) return()
 
     if (!(is.character(input) & length(input) == 1)) {
-        stop(paste("Input is not a string.", sep=" "))
+        stop(.msg("Input is not a string.", call))
     }
 }
 
@@ -18,12 +20,14 @@ assert_string <- function(input, null.ok=FALSE) {
 #'
 #' @export
 assert_character <- function(input, null.ok=FALSE) {
+    call <- match.call()
+
     if (!null.ok & is.null(input)) {
-        stop("Input is null.")
+        stop(.msg("Input is null.", call))
     }
 
     if (!is.character(input) & !is.null(input)) {
-        stop("Input is not a character.")
+        stop(.msg("Input is not a character.", call))
     }
 }
 
@@ -35,14 +39,16 @@ assert_character <- function(input, null.ok=FALSE) {
 #'
 #' @export
 assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
+    call <- match.call()
+
     if (is.null(input) & null.ok) return()
 
     if (!(length(input) == 1)) {
-        stop("Input is not an integer.")
+        stop(.msg("Input is not an integer."), call)
     }
 
-    if (!(input %% 1 == 0 )) {
-        stop("Input is not an integer.")
+    if (is.numeric(input) & !(input %% 1 == 0 )) {
+        stop(.msg("Input is not an integer."), call)
     }
 
     lower <- as.numeric(lower)
@@ -50,13 +56,13 @@ assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
 
     if (!is.null(lower)) {
         if (input < lower) {
-            stop(paste("Input is less than ", lower, ".", sep=""))
+            stop(.msg(paste("Input is less than ", lower, ".", sep=""), call))
         }
     }
 
     if (!is.null(upper)) {
         if (input > upper) {
-            stop(paste("Input is greater than ", upper, ".", sep=""))
+            stop(.msg(paste("Input is greater than ", upper, ".", sep=""), call))
         }
     }
 }
@@ -67,10 +73,12 @@ assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
 #'
 #' @export
 assert_factor <- function(input, null.ok=FALSE) {
+    call <- match.call()
+
     if (is.null(input) & null.ok) return()
 
     if (!is.factor(input)) {
-        stop("Input is not a factor.")
+        stop(.msg("Input is not a factor.", call))
     }
 }
 
@@ -80,10 +88,12 @@ assert_factor <- function(input, null.ok=FALSE) {
 #'
 #' @export
 assert_logical <- function(input, null.ok=FALSE) {
+    call <- match.call()
+
     if (is.null(input) & null.ok) return()
 
     if (!is.logical(input)) {
-        stop("Input is not a logical.")
+        stop(.msg("Input is not a logical.", call))
     }
 }
 
@@ -94,11 +104,13 @@ assert_logical <- function(input, null.ok=FALSE) {
 #'
 #' @export
 assert_regexp <- function(input, pattern) {
+    call <- match.call()
+
     assert_string(input)
     assert_string(pattern)
 
     if (!grepl(pattern, input)) {
-        stop(paste("Input do not contain the pattern ", pattern, ".", sep=""))
+        stop(.msg(paste("Input do not contain the pattern ", pattern, ".", sep=""), call))
     }
 }
 
@@ -109,12 +121,14 @@ assert_regexp <- function(input, pattern) {
 #'
 #' @export
 assert_type <- function(input, type) {
+    call <- match.call()
+
     if (type == "tbl_df") {
         if (!dplyr::is.tbl(input)) {
-            stop("Input is not a tbl_df.")
+            stop(.msg("Input is not a tbl_df.", call))
         }
     } else if (typeof(input) != type) {
-        stop(paste("Input is not of type ", type, ".", sep=""))
+        stop(.msg(paste("Input is not of type ", type, ".", sep=""), call))
     }
 }
 
@@ -126,13 +140,15 @@ assert_type <- function(input, type) {
 #'
 #' @export
 assert_subset <- function(input, set, null.ok=FALSE) {
+    call <- match.call()
+
     if (!null.ok & is.null(input)) {
-        stop("Input is null.")
+        stop(.msg("Input is null.", call))
     }
 
     for (i in seq_along(input)) {
         if (!(input[i] %in% set)) {
-            stop(paste(input[i], " is not in present in the set.", sep=""))
+            stop(.msg(paste(input[i], " is not in present in the set.", sep=""), call))
         }
     }
 }
@@ -143,10 +159,12 @@ assert_subset <- function(input, set, null.ok=FALSE) {
 #'
 #' @export
 assert_file_exists <- function(input) {
+    call <- match.call()
+
     assert_string(input)
 
     if (!file.exists(input)) {
-        stop(paste("File", input, "does not exist.", sep=" "))
+        stop(.msg(paste("File", input, "does not exist.", sep=" "), call))
     }
 }
 
@@ -157,10 +175,12 @@ assert_file_exists <- function(input) {
 #'
 #' @export
 assert_filetype <- function(input, type) {
+    call <- match.call()
+
     assert_file_exists(input)
     assert_regexp(type, "(\\.)\\w+")
 
     if (!endsWith(input, type)) {
-        stop(paste("File ", input, " does not end with ", type, ".", sep=""))
+        stop(.msg(paste("File ", input, " does not end with ", type, ".", sep=""), call))
     }
 }
