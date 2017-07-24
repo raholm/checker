@@ -70,7 +70,20 @@ assert_factor <- function(input, null.ok=FALSE) {
     if (is.null(input) & null.ok) return()
 
     if (!is.factor(input)) {
-        stop("Input is not a factor")
+        stop("Input is not a factor.")
+    }
+}
+
+#' Asserts that input is logical
+#'
+#' @param inpit Input that is being checked for being a logical
+#'
+#' @export
+assert_logical <- function(input, null.ok=FALSE) {
+    if (is.null(input) & null.ok) return()
+
+    if (!is.logical(input)) {
+        stop("Input is not a logical.")
     }
 }
 

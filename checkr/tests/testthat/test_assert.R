@@ -41,6 +41,21 @@ test_that("assert_integer does not raise an error for valid input", {
     expect_message(assert_integer(NULL, null.ok=TRUE), NA)
 })
 
+test_that("assert_logical raises an error for invalid input", {
+    expect_error(assert_logical(1))
+    expect_error(assert_logical(0))
+    expect_error(assert_logical("1"))
+    expect_error(assert_logical("TRUE"))
+    expect_error(assert_logical("FALSE"))
+    expect_error(assert_logical(NULL, null.ok=FALSE))
+})
+
+test_that("assert_logical does not raise an error for valind input", {
+    expect_message(assert_logical(TRUE), NA)
+    expect_message(assert_logical(FALSE), NA)
+    expect_message(assert_logical(NULL, null.ok=TRUE), NA)
+})
+
 test_that("assert_factor raises an error for invalid input", {
     expect_error(assert_factor(123))
     expect_error(assert_factor("123"))
