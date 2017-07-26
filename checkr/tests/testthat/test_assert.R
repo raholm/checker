@@ -93,6 +93,18 @@ test_that("assert_subset does not raise an error for valid input", {
     expect_message(assert_subset(c(1, 3), c(1, 2, 3)), NA)
 })
 
+test_that("assert_choice raises an error for invalid input", {
+    expect_error(assert_choice(NULL, c("a", "b", "c"), null.ok=FALSE))
+    expect_error(assert_choice(c("a", "b"), c("a", "b", "c")))
+    expect_error(assert_choice("a", c("b", "c")))
+})
+
+test_that("assert_choice does not raise an error for valid input", {
+    expect_message(assert_choice(NULL, c("a", "b", "c"), null.ok=TRUE), NA)
+    expect_message(assert_choice("a", c("a", "b", "c")), NA)
+    expect_message(assert_choice(1, c(1, 2, 3)), NA)
+})
+
 test_that("assert_file_exists raises an error for invalid file", {
     expect_error(assert_file_exists("./files/empty_file.invalid"))
 })

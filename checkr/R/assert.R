@@ -142,6 +142,8 @@ assert_type <- function(input, type) {
 assert_subset <- function(input, set, null.ok=FALSE) {
     call <- match.call()
 
+    if (is.null(input) & null.ok) return()
+
     if (!null.ok & is.null(input)) {
         stop(.msg("Input is null.", call))
     }
@@ -150,6 +152,31 @@ assert_subset <- function(input, set, null.ok=FALSE) {
         if (!(input[i] %in% set)) {
             stop(.msg(paste(input[i], " is not in present in the set.", sep=""), call))
         }
+    }
+}
+
+#' Asserts that input is a single element of a set
+#'
+#' @param input The input to check
+#' @param set The full set
+#' @param null.ok If set to TRUE, then null element is fine
+#'
+#' @export
+assert_choice <- function(input, set, null.ok=FALSE) {
+    call <- match.call()
+
+    if (is.null(input) & null.ok) return()
+
+    if (!null.ok & is.null(input)) {
+        stop(.msg("Input is null.", call))
+    }
+
+    if (length(input) != 1) {
+        stop(.msg("Input is not a single element", call))
+    }
+
+    if (!(input %in% set)) {
+        stop(.msg("Input is not present in the set.", call))
     }
 }
 
