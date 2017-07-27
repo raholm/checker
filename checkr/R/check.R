@@ -126,5 +126,16 @@ is_file_type <- function(input, type) {
         type <- paste0(".", type, collapse="")
 
     if (!file_exists(input)) return(FALSE)
-    grepl("(\\.)\\w+", type) & endsWith(input, type)
+    contain_regexp(type, "(\\.)\\w+") & endsWith(input, type)
+}
+
+#' Checks if input contains regexp \code{pattern
+#'
+#' @param input The input to check
+#' @param pattern The pattern
+#'
+#' @export
+contain_regexp <- function(input, pattern) {
+    if (!is_string(input) | !is_string(pattern)) return(FALSE)
+    grepl(pattern, input)
 }
