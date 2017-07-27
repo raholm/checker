@@ -173,7 +173,7 @@ test_that("is_tidy_topic_state returns true for tibble table input with expected
 test_that("file_exists returns false for non-string input", {
     expect_false(file_exists(1))
     expect_false(file_exists(c("a", "b")))
-    expect_false(file_exists(data_frame()))
+    expect_false(file_exists(data.frame()))
     expect_false(file_exists(list()))
 })
 
@@ -188,7 +188,7 @@ test_that("file_exists returns true for existing file input", {
 test_that("is_file_type returns false for non-string input", {
     expect_false(is_file_type(1, ".txt"))
     expect_false(is_file_type(c("a", "b"), ".txt"))
-    expect_false(is_file_type(data_frame(), ".txt"))
+    expect_false(is_file_type(data.frame(), ".txt"))
     expect_false(is_file_type(list(), ".txt"))
 })
 

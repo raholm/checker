@@ -1,4 +1,4 @@
 library(testthat)
-library(checker)
+library(checkr)
 
-test_check("checker")
+test_check("checkr")
