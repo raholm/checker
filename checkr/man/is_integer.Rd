@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{is_integer}
 \alias{is_integer}
-\title{Checks if input is numeric}
+\title{Checks if input is integer}
 \usage{
 is_integer(input, len = length(input), lower = -Inf, upper = Inf)
 }
@@ -16,5 +16,5 @@ is_integer(input, len = length(input), lower = -Inf, upper = Inf)
 \item{upper}{Upper bound}
 }
 \description{
-Checks if input is numeric
+Checks if input is integer
 }

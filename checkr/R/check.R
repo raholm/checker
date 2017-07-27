@@ -57,7 +57,7 @@ is_numeric <- function(input, len=length(input), lower=-Inf, upper=Inf) {
     all(input >= min(lower, upper)) & all(input <= max(lower, upper))
 }
 
-#' Checks if input is numeric
+#' Checks if input is integer
 #'
 #' @param input The input to check
 #' @param len The assumed length of input
@@ -85,7 +85,7 @@ is_subset <- function(input, set) {
     TRUE
 }
 
-#' Checks if input is a \code{\link[tibble]{tibble}}
+#' Checks if input is a \code{\link[tibble]{data_frame}}
 #'
 #' @param input The input to check
 #'
@@ -94,7 +94,7 @@ is_tidy_table <- function(input) {
     tibble::is_tibble(input) & dplyr::is.tbl(input)
 }
 
-#' Checks if input is a \code{\link[tibble]{tibble}}
+#' Checks if input is a \code{\link[tibble]{data_frame}}
 #' having columns 'doc', 'type', 'topic'
 #'
 #' @param The input to check

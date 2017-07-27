@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{is_tidy_table}
 \alias{is_tidy_table}
-\title{Checks if input is a \code{\link[tibble]{tibble}}}
+\title{Checks if input is a \code{\link[tibble]{data_frame}}}
 \usage{
 is_tidy_table(input)
 }
@@ -10,5 +10,5 @@ is_tidy_table(input)
 \item{input}{The input to check}
 }
 \description{
-Checks if input is a \code{\link[tibble]{tibble}}
+Checks if input is a \code{\link[tibble]{data_frame}}
 }

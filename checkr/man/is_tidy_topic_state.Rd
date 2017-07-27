@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{is_tidy_topic_state}
 \alias{is_tidy_topic_state}
-\title{Checks if input is a \code{\link[tibble]{tibble}}
+\title{Checks if input is a \code{\link[tibble]{data_frame}}
 having columns 'doc', 'type', 'topic'}
 \usage{
 is_tidy_topic_state(state)
@@ -11,6 +11,6 @@ is_tidy_topic_state(state)
 \item{The}{input to check}
 }
 \description{
-Checks if input is a \code{\link[tibble]{tibble}}
+Checks if input is a \code{\link[tibble]{data_frame}}
 having columns 'doc', 'type', 'topic'
 }
