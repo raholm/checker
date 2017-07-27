@@ -4,12 +4,14 @@
 \alias{assert_character}
 \title{Assets that the input is character.}
 \usage{
-assert_character(input, null.ok = FALSE)
+assert_character(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is checked for being a character}
 
-\item{null.ok}{If true, will not assert null value}
+\item{len}{The assumed length of the input}
+
+\item{null_ok}{If true, will not assert null value}
 }
 \description{
 Assets that the input is character.

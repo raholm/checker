@@ -4,7 +4,7 @@
 \alias{assert_string}
 \title{Asserts that the input is string.}
 \usage{
-assert_string(input, null.ok = FALSE)
+assert_string(input, null_ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is checked for being a string}

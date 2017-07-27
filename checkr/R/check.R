@@ -109,7 +109,7 @@ is_tidy_topic_state <- function(state) {
 #'
 #' @param input The input to check
 #'
-#' @param
+#' @export
 file_exists <- function(input) {
     if (!is_string(input)) return(FALSE)
     file.exists(input)
@@ -130,7 +130,7 @@ is_file_type <- function(input, type) {
     contain_regexp(type, "(\\.)\\w+") & endsWith(input, type)
 }
 
-#' Checks if input contains regexp \code{pattern
+#' Checks if input contains regexp \code{pattern}
 #'
 #' @param input The input to check
 #' @param pattern The pattern

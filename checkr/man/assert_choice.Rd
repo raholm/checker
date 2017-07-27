@@ -4,14 +4,14 @@
 \alias{assert_choice}
 \title{Asserts that input is a single element of a set}
 \usage{
-assert_choice(input, set, null.ok = FALSE)
+assert_choice(input, set, null_ok = FALSE)
 }
 \arguments{
 \item{input}{The input to check}
 
 \item{set}{The full set}
 
-\item{null.ok}{If set to TRUE, then null element is fine}
+\item{null_ok}{If set to TRUE, then null element is fine}
 }
 \description{
 Asserts that input is a single element of a set

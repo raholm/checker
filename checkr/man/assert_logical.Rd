@@ -4,10 +4,10 @@
 \alias{assert_logical}
 \title{Asserts that input is logical}
 \usage{
-assert_logical(input, null.ok = FALSE)
+assert_logical(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
-\item{inpit}{Input that is being checked for being a logical}
+\item{input}{Input that is being checked for being a logical}
 }
 \description{
 Asserts that input is logical

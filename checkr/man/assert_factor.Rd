@@ -4,7 +4,7 @@
 \alias{assert_factor}
 \title{Asserts that input is factor}
 \usage{
-assert_factor(input, null.ok = FALSE)
+assert_factor(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is being checked for being a factor}

@@ -4,10 +4,13 @@
 \alias{assert_integer}
 \title{Asserts that input is integer}
 \usage{
-assert_integer(input, lower = -Inf, upper = Inf, null.ok = FALSE)
+assert_integer(input, len = length(input), lower = -Inf, upper = Inf,
+  null_ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is checked for being an integer}
+
+\item{len}{The assumed length of the input}
 
 \item{lower}{Lower bound}
 
