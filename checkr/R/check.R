@@ -101,10 +101,13 @@ contains_regexp <- function(input, pattern) {
 #' Checks if input is a \code{\link[tibble]{data_frame}}
 #'
 #' @param input The input to check
+#' @param cols Character vector of expected columns. Defaults to NULL, i.e., no preferenses.
 #'
 #' @export
-is_tidy_table <- function(input) {
-    tibble::is_tibble(input) & dplyr::is.tbl(input)
+is_tidy_table <- function(input, cols=NULL) {
+    is_table <- tibble::is_tibble(input) & dplyr::is.tbl(input)
+    if (is_character(cols) & is_table) is_subset(cols, names(input))
+    else is_table
 }
 
 #' Checks if input is a \code{\link[tibble]{data_frame}}
@@ -114,8 +117,7 @@ is_tidy_table <- function(input) {
 #'
 #' @export
 is_tidy_topic_state <- function(input) {
-    is_tidy_table(input) &
-        is_subset(c("doc", "type", "topic"), names(input))
+    is_tidy_table(input, c("doc", "type", "topic"))
 }
 
 #' Checks if input is an existing file

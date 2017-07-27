@@ -70,6 +70,18 @@ assert_logical <- function(input, len=length(input), null_ok=FALSE) {
         stop(.msg("Input is not a logical.", call))
 }
 
+#' Asserts that input is a \code{\link[tibble]{data_frame}}
+#'
+#' @param input The input to check
+#' @param cols Character vector of expected columns. Defaults to NULL, i.e., no preferenses.
+#'
+#' @export
+assert_tidy_table <- function(input, cols=NULL) {
+    call <- match.call()
+    if(!is_tidy_table(input, cols))
+        stop(.msg("Input is not a tidy table.", call))
+}
+
 #' Asserts that input contains pattern
 #'
 #' @param input Input that is being checked for pattern

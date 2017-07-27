@@ -150,9 +150,22 @@ test_that("is_tidy_table returns false for non-tibble table input", {
     expect_false(is_tidy_table(dplyr::lst(a="hello world")))
 })
 
+test_that("is_tidy_table returns false for tibble input without specified columns", {
+    expect_false(is_tidy_table(tibble::data_frame(a="hello world"), "b"))
+    expect_false(is_tidy_table(dplyr::data_frame(a="hello world"), "b"))
+    expect_false(is_tidy_table(dplyr::data_frame(a="hello", b="world"), c("b", "c")))
+})
+
 test_that("is_tidy_table returns true for tibble input", {
     expect_true(is_tidy_table(tibble::data_frame(a="hello world")))
     expect_true(is_tidy_table(dplyr::data_frame(a="hello world")))
+})
+
+
+test_that("is_tidy_table returns true for tibble input with specified columns", {
+    expect_true(is_tidy_table(tibble::data_frame(a="hello world"), "a"))
+    expect_true(is_tidy_table(dplyr::data_frame(a="hello", b="world"), "b"))
+    expect_true(is_tidy_table(dplyr::data_frame(a="hello", b="world"), c("a", "b")))
 })
 
 test_that("is_tidy_topic_state returns false for non-tibble table input", {

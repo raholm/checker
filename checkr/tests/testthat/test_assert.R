@@ -68,6 +68,22 @@ test_that("assert_factor does not raise an error for valid input", {
     expect_message(assert_factor(NULL, null_ok=TRUE), NA)
 })
 
+test_that("assert_tidy_table raises an error for invalid input", {
+    expect_error(assert_tidy_table(data.frame()))
+    expect_error(assert_tidy_table("hello"))
+})
+
+test_that("assert_tidy_table raises an error for missing columns", {
+    expect_error(assert_tidy_table(dplyr::data_frame(b="b"), "a"))
+    expect_error(assert_tidy_table(dplyr::data_frame(a="a"), c("a", "b")))
+})
+
+test_that("assert_tidy_table does not raise an error for valid input", {
+    expect_message(assert_tidy_table(tibble::data_frame()), NA)
+    expect_message(assert_tidy_table(dplyr::data_frame()), NA)
+    expect_message(assert_tidy_table(dplyr::data_frame(a="a", b="b"), "a"), NA)
+    expect_message(assert_tidy_table(dplyr::data_frame(a="a", b="b"), c("a", "b")), NA)
+})
 
 test_that("assert_regexp raises an error for invalid input", {
     expect_error(assert_regexp("R", "\\."))

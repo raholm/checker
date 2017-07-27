@@ -4,10 +4,12 @@
 \alias{is_tidy_table}
 \title{Checks if input is a \code{\link[tibble]{data_frame}}}
 \usage{
-is_tidy_table(input)
+is_tidy_table(input, cols = NULL)
 }
 \arguments{
 \item{input}{The input to check}
+
+\item{cols}{Character vector of expected columns. Defaults to NULL, i.e., no preferenses.}
 }
 \description{
 Checks if input is a \code{\link[tibble]{data_frame}}
