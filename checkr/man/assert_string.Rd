@@ -9,7 +9,7 @@ assert_string(input, null_ok = FALSE)
 \arguments{
 \item{input}{Input that is checked for being a string}
 
-\item{null_ok}{If true, will not assert null value}
+\item{null_ok}{If \code{TRUE}, will not assert null value}
 }
 \description{
 Asserts that the input is string.

@@ -11,7 +11,7 @@ assert_choice(input, set, null_ok = FALSE)
 
 \item{set}{The full set}
 
-\item{null_ok}{If set to TRUE, then null element is fine}
+\item{null_ok}{If set to \CODE{TRUE}, then null element is fine}
 }
 \description{
 Asserts that input is a single element of a set

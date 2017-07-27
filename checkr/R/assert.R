@@ -1,7 +1,7 @@
 #' Asserts that the input is string.
 #'
 #' @param input Input that is checked for being a string
-#' @param null_ok If true, will not assert null value
+#' @param null_ok If \code{TRUE}, will not assert null value
 #'
 #' @export
 assert_string <- function(input, null_ok=FALSE) {
@@ -14,7 +14,7 @@ assert_string <- function(input, null_ok=FALSE) {
 #'
 #' @param input Input that is checked for being a character
 #' @param len The assumed length of the input
-#' @param null_ok If true, will not assert null value
+#' @param null_ok If \code{TRUE}, will not assert null value
 #'
 #' @export
 assert_character <- function(input, len=length(input), null_ok=FALSE) {
@@ -30,7 +30,7 @@ assert_character <- function(input, len=length(input), null_ok=FALSE) {
 #' @param len The assumed length of the input
 #' @param lower Lower bound
 #' @param upper Upper bound
-#' @param null_ok If true, will not assert null value
+#' @param null_ok If \CODE{TRUE}, will not assert null value
 #'
 #' @export
 assert_integer <- function(input, len=length(input),
@@ -47,7 +47,7 @@ assert_integer <- function(input, len=length(input),
 #'
 #' @param input Input that is being checked for being a factor
 #' @param len The assumed length of the input
-#' @param null_ok If true, will not assert null value
+#' @param null_ok If \code{TRUE}, will not assert null value
 #'
 #' @export
 assert_factor <- function(input, len=length(input), null_ok=FALSE) {
@@ -61,7 +61,7 @@ assert_factor <- function(input, len=length(input), null_ok=FALSE) {
 #'
 #' @param input Input that is being checked for being a logical
 #' @param len The assumed length of the input
-#' @param null_ok If true, will not assert null value
+#' @param null_ok If \code{TRUE}, will not assert null value
 #'
 #' @export
 assert_logical <- function(input, len=length(input), null_ok=FALSE) {
@@ -118,7 +118,7 @@ assert_type <- function(input, type) {
 #'
 #' @param input The input to check for being a subset
 #' @param set The full set
-#' @param null_ok If set to TRUE, then null subset is fine
+#' @param null_ok If set to \CODE{TRUE}, then null subset is fine
 #'
 #' @export
 assert_subset <- function(input, set, null_ok=FALSE) {
@@ -131,7 +131,7 @@ assert_subset <- function(input, set, null_ok=FALSE) {
 #'
 #' @param input The input to check
 #' @param set The full set
-#' @param null_ok If set to TRUE, then null element is fine
+#' @param null_ok If set to \CODE{TRUE}, then null element is fine
 #'
 #' @export
 assert_choice <- function(input, set, null_ok=FALSE) {

@@ -11,7 +11,7 @@ assert_factor(input, len = length(input), null_ok = FALSE)
 
 \item{len}{The assumed length of the input}
 
-\item{null_ok}{If true, will not assert null value}
+\item{null_ok}{If \code{TRUE}, will not assert null value}
 }
 \description{
 Asserts that input is factor

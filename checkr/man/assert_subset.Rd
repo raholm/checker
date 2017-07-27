@@ -11,7 +11,7 @@ assert_subset(input, set, null_ok = FALSE)
 
 \item{set}{The full set}
 
-\item{null_ok}{If set to TRUE, then null subset is fine}
+\item{null_ok}{If set to \CODE{TRUE}, then null subset is fine}
 }
 \description{
 Asserts that input is subset of a set
