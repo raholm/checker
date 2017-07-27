@@ -14,6 +14,7 @@ test_that("assert_character raises an error for invalid input", {
     expect_error(assert_character(123))
     expect_error(assert_character(list(a="test_string")))
     expect_error(assert_character(NULL, null_ok=FALSE))
+    expect_error(assert_character("a", len=2))
 })
 
 test_that("assert_character does not raise an error for valid input", {
@@ -28,6 +29,7 @@ test_that("assert_integer raises an error for invalid input", {
     expect_error(assert_integer(1.5))
     expect_error(assert_integer(1, lower=2))
     expect_error(assert_integer(1, upper=0))
+    expect_error(assert_integer(1, len=2))
     expect_error(assert_integer(NULL, null_ok=FALSE))
 })
 
@@ -48,9 +50,10 @@ test_that("assert_logical raises an error for invalid input", {
     expect_error(assert_logical("TRUE"))
     expect_error(assert_logical("FALSE"))
     expect_error(assert_logical(NULL, null_ok=FALSE))
+    expect_error(assert_logical(TRUE, len=2))
 })
 
-test_that("assert_logical does not raise an error for valind input", {
+test_that("assert_logical does not raise an error for valid input", {
     expect_message(assert_logical(TRUE), NA)
     expect_message(assert_logical(FALSE), NA)
     expect_message(assert_logical(NULL, null_ok=TRUE), NA)
@@ -61,6 +64,7 @@ test_that("assert_factor raises an error for invalid input", {
     expect_error(assert_factor("123"))
     expect_error(assert_factor(list(a="test_string")))
     expect_error(assert_factor(NULL, null_ok=FALSE))
+    expect_error(assert_factor(as.factor(123), len=2))
 })
 
 test_that("assert_factor does not raise an error for valid input", {
@@ -128,11 +132,11 @@ test_that("assert_file_exists does not an error for valid file", {
     expect_message(assert_file_exists("./files/empty_file.valid"), NA)
 })
 
-test_that("assert_filetype raises an error for incorrect filetype", {
+test_that("assert_file_type raises an error for incorrect filetype", {
     expect_message(assert_file_exists("./files/empty_file.valid"), NA)
-    expect_error(assert_filetype("./files/empty_file.valid", ".json"))
+    expect_error(assert_file_type("./files/empty_file.valid", ".json"))
 })
 
-test_that("assert_filetype does not raise an error for correct filetype", {
-    expect_message(assert_filetype("./files/empty_file.json", ".json"), NA)
+test_that("assert_file_type does not raise an error for correct filetype", {
+    expect_message(assert_file_type("./files/empty_file.json", ".json"), NA)
 })

@@ -7,8 +7,7 @@
 assert_string <- function(input, null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_string(input))
-        stop(.msg("Input is not a string.", call))
+    .check_type(is_string, input, "string", call)
 }
 
 #' Assets that the input is character.
@@ -21,8 +20,8 @@ assert_string <- function(input, null_ok=FALSE) {
 assert_character <- function(input, len=length(input), null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_character(input, len))
-        stop(.msg("Input is not a character.", call))
+    .check_type(is_character, input, "character", call)
+    .check_len(len, input, call)
 }
 
 #' Asserts that input is integer
@@ -38,8 +37,10 @@ assert_integer <- function(input, len=length(input),
                            lower=-Inf, upper=Inf, null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_integer(input, len, lower, upper))
-        stop(.msg("Input is not integer within bounds.", call))
+    .check_type(is_integer, input, "integer", call)
+    .check_len(len, input, call)
+    .check_lower_bound(min(lower, upper), input, call)
+    .check_upper_bound(max(lower, upper), input, call)
 }
 
 #' Asserts that input is factor
@@ -52,8 +53,8 @@ assert_integer <- function(input, len=length(input),
 assert_factor <- function(input, len=length(input), null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_factor(input, len))
-        stop(.msg("Input is not a factor.", call))
+    .check_type(is_factor, input, "factor", call)
+    .check_len(len, input)
 }
 
 #' Asserts that input is logical
@@ -66,8 +67,8 @@ assert_factor <- function(input, len=length(input), null_ok=FALSE) {
 assert_logical <- function(input, len=length(input), null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_logical(input, len))
-        stop(.msg("Input is not a logical.", call))
+    .check_type(is_logical, input, "logical", call)
+    .check_len(len, input, call)
 }
 
 #' Asserts that input is a \code{\link[tibble]{data_frame}}
@@ -78,8 +79,8 @@ assert_logical <- function(input, len=length(input), null_ok=FALSE) {
 #' @export
 assert_tidy_table <- function(input, cols=NULL) {
     call <- match.call()
-    if(!is_tidy_table(input, cols))
-        stop(.msg("Input is not a tidy table.", call))
+    .check_type(is_tidy_table, input, "tidy table", call)
+    .check_tblcol_subset(cols, names(input), call)
 }
 
 #' Asserts that input contains pattern
@@ -92,8 +93,7 @@ assert_regexp <- function(input, pattern) {
     assert_string(input)
     assert_string(pattern)
     call <- match.call()
-    if (!contains_regexp(input, pattern))
-        stop(.msg(paste("Input do not contain the pattern ", pattern, ".", sep=""), call))
+    .check_cond(contains_regexp(input, pattern), "regexp", call)
 }
 
 #' Asserts that input is of specified type
@@ -124,8 +124,7 @@ assert_type <- function(input, type) {
 assert_subset <- function(input, set, null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!is_subset(input, set))
-        stop(.msg("Input is not a subset.", call))
+    .check_subset(input, set, call)
 }
 
 #' Asserts that input is a single element of a set
@@ -138,8 +137,7 @@ assert_subset <- function(input, set, null_ok=FALSE) {
 assert_choice <- function(input, set, null_ok=FALSE) {
     if (is_null(input) & null_ok) return()
     call <- match.call()
-    if (!(length(input) == 1) | (length(input) == 1 & !(is_subset(input, set))))
-        stop(.msg("Input is not a present in the set of choices"))
+    .check_choice(input, set, call)
 }
 
 #' Asserts that the input is an existing file.
@@ -149,18 +147,16 @@ assert_choice <- function(input, set, null_ok=FALSE) {
 #' @export
 assert_file_exists <- function(input) {
     call <- match.call()
-    if (!file_exists(input))
-        stop(.msg(paste("File", input, "does not exist.", sep=" "), call))
+    .check_file_exists(input, call)
 }
 
-#' Asserts that the input is of specified filetype
+#' Asserts that the input is of specified file type
 #'
 #' @param input Input that is checked for being specified filetype.
-#' @param type Filetype to check for
+#' @param type File type to check for
 #'
 #' @export
-assert_filetype <- function(input, type) {
+assert_file_type <- function(input, type) {
     call <- match.call()
-    if (!is_file_type(input, type))
-        stop(.msg(paste("File ", input, " does not end with ", type, ".", sep=""), call))
+    .check_file_type(input, type, call)
 }
