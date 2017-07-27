@@ -80,7 +80,7 @@ assert_regexp <- function(input, pattern) {
     assert_string(input)
     assert_string(pattern)
     call <- match.call()
-    if (!contain_regexp(input, pattern))
+    if (!contains_regexp(input, pattern))
         stop(.msg(paste("Input do not contain the pattern ", pattern, ".", sep=""), call))
 }
 

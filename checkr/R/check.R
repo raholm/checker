@@ -87,6 +87,17 @@ is_subset <- function(input, set) {
     TRUE
 }
 
+#' Checks if input contains regexp \code{pattern}
+#'
+#' @param input The input to check
+#' @param pattern The pattern
+#'
+#' @export
+contains_regexp <- function(input, pattern) {
+    if (!is_string(input) | !is_string(pattern)) return(FALSE)
+    grepl(pattern, input)
+}
+
 #' Checks if input is a \code{\link[tibble]{data_frame}}
 #'
 #' @param input The input to check
@@ -129,16 +140,5 @@ is_file_type <- function(input, type) {
         type <- paste0(".", type, collapse="")
 
     if (!file_exists(input)) return(FALSE)
-    contain_regexp(type, "(\\.)\\w+") & endsWith(input, type)
-}
-
-#' Checks if input contains regexp \code{pattern}
-#'
-#' @param input The input to check
-#' @param pattern The pattern
-#'
-#' @export
-contain_regexp <- function(input, pattern) {
-    if (!is_string(input) | !is_string(pattern)) return(FALSE)
-    grepl(pattern, input)
+    contains_regexp(type, "(\\.)\\w+") & endsWith(input, type)
 }

@@ -210,18 +210,18 @@ test_that("is_file_type returns true for existing file input", {
     expect_true(is_file_type("./files/empty_file.json", "json"))
 })
 
-test_that("contain_regexp returns false for non-string input", {
-    expect_false(contain_regexp(data.frame(a="hello world"), "hello"))
+test_that("contains_regexp returns false for non-string input", {
+    expect_false(contains_regexp(data.frame(a="hello world"), "hello"))
 })
 
-test_that("contain_regexp returns false for non-string pattern", {
-    expect_false(contain_regexp("hello world", 123))
+test_that("contains_regexp returns false for non-string pattern", {
+    expect_false(contains_regexp("hello world", 123))
 })
 
-test_that("contain_regexp returns false for non-existing pattern", {
-    expect_false(contain_regexp("json", "(\\.)\\w+"))
+test_that("contains_regexp returns false for non-existing pattern", {
+    expect_false(contains_regexp("json", "(\\.)\\w+"))
 })
 
-test_that("contain_regexp returns true for existing pattern", {
-    expect_true(contain_regexp(".json", "(\\.)\\w+"))
+test_that("contains_regexp returns true for existing pattern", {
+    expect_true(contains_regexp(".json", "(\\.)\\w+"))
 })
