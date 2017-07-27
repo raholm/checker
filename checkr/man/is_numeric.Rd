@@ -10,6 +10,10 @@ is_numeric(input, len = length(input), lower = -Inf, upper = Inf)
 \item{input}{The input to check}
 
 \item{len}{The assumed length of input}
+
+\item{lower}{Lower bound}
+
+\item{upper}{Upper bound}
 }
 \description{
 Checks if input is numeric

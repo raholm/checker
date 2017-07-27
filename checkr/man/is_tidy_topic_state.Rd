@@ -5,10 +5,10 @@
 \title{Checks if input is a \code{\link[tibble]{data_frame}}
 having columns 'doc', 'type', 'topic'}
 \usage{
-is_tidy_topic_state(state)
+is_tidy_topic_state(input)
 }
 \arguments{
-\item{The}{input to check}
+\item{input}{The input to check}
 }
 \description{
 Checks if input is a \code{\link[tibble]{data_frame}}

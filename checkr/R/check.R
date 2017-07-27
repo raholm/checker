@@ -50,6 +50,8 @@ is_factor <- function(input, len=length(input)) {
 #'
 #' @param input The input to check
 #' @param len The assumed length of input
+#' @param lower Lower bound
+#' @param upper Upper bound
 #'
 #' @export
 is_numeric <- function(input, len=length(input), lower=-Inf, upper=Inf) {
@@ -97,12 +99,12 @@ is_tidy_table <- function(input) {
 #' Checks if input is a \code{\link[tibble]{data_frame}}
 #' having columns 'doc', 'type', 'topic'
 #'
-#' @param The input to check
+#' @param input The input to check
 #'
 #' @export
-is_tidy_topic_state <- function(state) {
-    is_tidy_table(state) &
-        is_subset(c("doc", "type", "topic"), names(state))
+is_tidy_topic_state <- function(input) {
+    is_tidy_table(input) &
+        is_subset(c("doc", "type", "topic"), names(input))
 }
 
 #' Checks if input is an existing file
