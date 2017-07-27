@@ -15,6 +15,8 @@ assert_integer(input, len = length(input), lower = -Inf, upper = Inf,
 \item{lower}{Lower bound}
 
 \item{upper}{Upper bound}
+
+\item{null_ok}{If true, will not assert null value}
 }
 \description{
 Asserts that input is integer

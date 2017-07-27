@@ -1,6 +1,7 @@
 #' Asserts that the input is string.
 #'
 #' @param input Input that is checked for being a string
+#' @param null_ok If true, will not assert null value
 #'
 #' @export
 assert_string <- function(input, null_ok=FALSE) {
@@ -30,6 +31,7 @@ assert_character <- function(input, len=length(input), null_ok=FALSE) {
 #' @param len The assumed length of the input
 #' @param lower Lower bound
 #' @param upper Upper bound
+#' @param null_ok If true, will not assert null value
 #'
 #' @export
 assert_integer <- function(input, len=length(input),
@@ -43,6 +45,8 @@ assert_integer <- function(input, len=length(input),
 #' Asserts that input is factor
 #'
 #' @param input Input that is being checked for being a factor
+#' @param len The assumed length of the input
+#' @param null_ok If true, will not assert null value
 #'
 #' @export
 assert_factor <- function(input, len=length(input), null_ok=FALSE) {
@@ -55,6 +59,8 @@ assert_factor <- function(input, len=length(input), null_ok=FALSE) {
 #' Asserts that input is logical
 #'
 #' @param input Input that is being checked for being a logical
+#' @param len The assumed length of the input
+#' @param null_ok If true, will not assert null value
 #'
 #' @export
 assert_logical <- function(input, len=length(input), null_ok=FALSE) {

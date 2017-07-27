@@ -8,6 +8,10 @@ assert_factor(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
 \item{input}{Input that is being checked for being a factor}
+
+\item{len}{The assumed length of the input}
+
+\item{null_ok}{If true, will not assert null value}
 }
 \description{
 Asserts that input is factor
