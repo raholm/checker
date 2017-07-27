@@ -130,6 +130,7 @@ test_that("is_integer returns true for integer input within the bounds", {
 })
 
 test_that("is_subset returns false for non-subset input", {
+    expect_false(is_subset(NULL, c(1, 2, 3)))
     expect_false(is_subset("a", c(1, 2, 3)))
     expect_false(is_subset(1, c("a", "b", "c")))
     expect_false(is_subset(c("a", "d"), c("a", "b", "c")))

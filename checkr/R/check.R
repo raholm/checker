@@ -77,6 +77,7 @@ is_integer <- function(input, len=length(input), lower=-Inf, upper=Inf) {
 #'
 #' @export
 is_subset <- function(input, set) {
+    if (length(input) <= 1) return(any(input == set))
     for (i in seq_along(input)) {
         if (!any(input[i] == set)) return(FALSE)
     }

@@ -3,68 +3,41 @@
 #' @param input Input that is checked for being a string
 #'
 #' @export
-assert_string <- function(input, null.ok=FALSE) {
+assert_string <- function(input, null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!(is.character(input) & length(input) == 1)) {
+    if (!is_string(input))
         stop(.msg("Input is not a string.", call))
-    }
 }
 
 #' Assets that the input is character.
 #'
 #' @param input Input that is checked for being a character
-#' @param null.ok If true, will not assert null value
+#' @param len The assumed length of the input
+#' @param null_ok If true, will not assert null value
 #'
 #' @export
-assert_character <- function(input, null.ok=FALSE) {
+assert_character <- function(input, len=length(input), null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (!null.ok & is.null(input)) {
-        stop(.msg("Input is null.", call))
-    }
-
-    if (!is.character(input) & !is.null(input)) {
+    if (!is_character(input, len))
         stop(.msg("Input is not a character.", call))
-    }
 }
 
 #' Asserts that input is integer
 #'
 #' @param input Input that is checked for being an integer
+#' @param len The assumed length of the input
 #' @param lower Lower bound
 #' @param upper Upper bound
 #'
 #' @export
-assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
+assert_integer <- function(input, len=length(input),
+                           lower=-Inf, upper=Inf, null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!(length(input) == 1)) {
-        stop(.msg("Input is not an integer."), call)
-    }
-
-    if (is.numeric(input) & !(input %% 1 == 0 )) {
-        stop(.msg("Input is not an integer."), call)
-    }
-
-    lower <- as.numeric(lower)
-    upper <- as.numeric(upper)
-
-    if (!is.null(lower)) {
-        if (input < lower) {
-            stop(.msg(paste("Input is less than ", lower, ".", sep=""), call))
-        }
-    }
-
-    if (!is.null(upper)) {
-        if (input > upper) {
-            stop(.msg(paste("Input is greater than ", upper, ".", sep=""), call))
-        }
-    }
+    if (!is_integer(input, len, lower, upper))
+        stop(.msg("Input is not integer within bounds.",))
 }
 
 #' Asserts that input is factor
@@ -72,29 +45,23 @@ assert_integer <- function(input, lower=-Inf, upper=Inf, null.ok=FALSE) {
 #' @param input Input that is being checked for being a factor
 #'
 #' @export
-assert_factor <- function(input, null.ok=FALSE) {
+assert_factor <- function(input, len=length(input), null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!is.factor(input)) {
+    if (!is_factor(input, len))
         stop(.msg("Input is not a factor.", call))
-    }
 }
 
 #' Asserts that input is logical
 #'
-#' @param inpit Input that is being checked for being a logical
+#' @param input Input that is being checked for being a logical
 #'
 #' @export
-assert_logical <- function(input, null.ok=FALSE) {
+assert_logical <- function(input, len=length(input), null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!is.logical(input)) {
+    if (!is_logical(input, len))
         stop(.msg("Input is not a logical.", call))
-    }
 }
 
 #' Asserts that input contains pattern
@@ -104,14 +71,11 @@ assert_logical <- function(input, null.ok=FALSE) {
 #'
 #' @export
 assert_regexp <- function(input, pattern) {
-    call <- match.call()
-
     assert_string(input)
     assert_string(pattern)
-
-    if (!grepl(pattern, input)) {
+    call <- match.call()
+    if (!contain_regexp(input, pattern))
         stop(.msg(paste("Input do not contain the pattern ", pattern, ".", sep=""), call))
-    }
 }
 
 #' Asserts that input is of specified type
@@ -122,11 +86,11 @@ assert_regexp <- function(input, pattern) {
 #' @export
 assert_type <- function(input, type) {
     call <- match.call()
+    assert_string(type)
 
     if (type == "tbl_df") {
-        if (!dplyr::is.tbl(input)) {
+        if (!is_tidy_table(input))
             stop(.msg("Input is not a tbl_df.", call))
-        }
     } else if (typeof(input) != type) {
         stop(.msg(paste("Input is not of type ", type, ".", sep=""), call))
     }
@@ -136,48 +100,28 @@ assert_type <- function(input, type) {
 #'
 #' @param input The input to check for being a subset
 #' @param set The full set
-#' @param null.ok If set to TRUE, then null subset is fine
+#' @param null_ok If set to TRUE, then null subset is fine
 #'
 #' @export
-assert_subset <- function(input, set, null.ok=FALSE) {
+assert_subset <- function(input, set, null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!null.ok & is.null(input)) {
-        stop(.msg("Input is null.", call))
-    }
-
-    for (i in seq_along(input)) {
-        if (!(input[i] %in% set)) {
-            stop(.msg(paste(input[i], " is not in present in the set.", sep=""), call))
-        }
-    }
+    if (!is_subset(input, set))
+        stop(.msg("Input is not a subset.", call))
 }
 
 #' Asserts that input is a single element of a set
 #'
 #' @param input The input to check
 #' @param set The full set
-#' @param null.ok If set to TRUE, then null element is fine
+#' @param null_ok If set to TRUE, then null element is fine
 #'
 #' @export
-assert_choice <- function(input, set, null.ok=FALSE) {
+assert_choice <- function(input, set, null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
     call <- match.call()
-
-    if (is.null(input) & null.ok) return()
-
-    if (!null.ok & is.null(input)) {
-        stop(.msg("Input is null.", call))
-    }
-
-    if (length(input) != 1) {
-        stop(.msg("Input is not a single element", call))
-    }
-
-    if (!(input %in% set)) {
-        stop(.msg("Input is not present in the set.", call))
-    }
+    if (!(length(input) == 1) | (length(input) == 1 & !(is_subset(input, set))))
+        stop(.msg("Input is not a present in the set of choices"))
 }
 
 #' Asserts that the input is an existing file.
@@ -187,12 +131,8 @@ assert_choice <- function(input, set, null.ok=FALSE) {
 #' @export
 assert_file_exists <- function(input) {
     call <- match.call()
-
-    assert_string(input)
-
-    if (!file.exists(input)) {
+    if (!file_exists(input))
         stop(.msg(paste("File", input, "does not exist.", sep=" "), call))
-    }
 }
 
 #' Asserts that the input is of specified filetype
@@ -203,11 +143,6 @@ assert_file_exists <- function(input) {
 #' @export
 assert_filetype <- function(input, type) {
     call <- match.call()
-
-    assert_file_exists(input)
-    assert_regexp(type, "(\\.)\\w+")
-
-    if (!endsWith(input, type)) {
+    if (!is_file_type(input, type))
         stop(.msg(paste("File ", input, " does not end with ", type, ".", sep=""), call))
-    }
 }
