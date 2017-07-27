@@ -39,7 +39,7 @@ assert_integer <- function(input, len=length(input),
     if (is_null(input) & null_ok) return()
     call <- match.call()
     if (!is_integer(input, len, lower, upper))
-        stop(.msg("Input is not integer within bounds.",))
+        stop(.msg("Input is not integer within bounds.", call))
 }
 
 #' Asserts that input is factor
