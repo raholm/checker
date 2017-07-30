@@ -7,14 +7,14 @@
         stop(.msg("Input is null."), call)
 }
 
-.check_type <- function(func, input, err_msg, call) {
+.check_type <- function(func, input, type, call) {
     if (!func(input))
-        stop(.msg(paste0("Input is not a ", err_msg, "."), call))
+        stop(.msg(paste0("Input is not a ", type, "."), call))
 }
 
-.check_cond <- function(cond, err_msg, call) {
+.check_cond <- function(cond, condition, call) {
     if (!cond)
-        stop(.msg(paste0("Input does not satisfy ", err_msg, " condition.", call)))
+        stop(.msg(paste0("Input does not satisfy ", condition, " condition.", call)))
 }
 
 .check_len <- function(len, input, call) {
