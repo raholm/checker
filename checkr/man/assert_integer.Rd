@@ -16,7 +16,7 @@ assert_integer(input, len = length(input), lower = -Inf, upper = Inf,
 
 \item{upper}{Upper bound}
 
-\item{null_ok}{If \CODE{TRUE}, will not assert null value}
+\item{null_ok}{If \code{TRUE}, will not assert null value}
 }
 \description{
 Asserts that input is integer
