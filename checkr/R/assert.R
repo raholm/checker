@@ -1,6 +1,6 @@
 #' Asserts that the input is string.
 #'
-#' @param input Input that is checked for being a string
+#' @param input Input that is checked for being string
 #' @param null_ok If \code{TRUE}, will not assert null value
 #'
 #' @export
@@ -12,7 +12,7 @@ assert_string <- function(input, null_ok=FALSE) {
 
 #' Assets that the input is character.
 #'
-#' @param input Input that is checked for being a character
+#' @param input Input that is checked for being character
 #' @param len The assumed length of the input
 #' @param null_ok If \code{TRUE}, will not assert null value
 #'
@@ -26,7 +26,7 @@ assert_character <- function(input, len=length(input), null_ok=FALSE) {
 
 #' Asserts that input is integer
 #'
-#' @param input Input that is checked for being an integer
+#' @param input Input that is checked for being integer
 #' @param len The assumed length of the input
 #' @param lower Lower bound
 #' @param upper Upper bound
@@ -43,9 +43,29 @@ assert_integer <- function(input, len=length(input),
     .check_upper_bound(max(lower, upper), input, call)
 }
 
+
+#' Asserts that input is numeric
+#'
+#' @param input Input that is checked for being numeric
+#' @param len The assumed length of the input
+#' @param lower Lower bound
+#' @param upper Upper bound
+#' @param null_ok If \code{TRUE}, will not assert null value
+#'
+#' @export
+assert_numeric <- function(input, len=length(input),
+                           lower=-Inf, upper=Inf, null_ok=FALSE) {
+    if (is_null(input) & null_ok) return()
+    call <- match.call()
+    .check_type(is_numeric, input, "numeric", call)
+    .check_len(len, input, call)
+    .check_lower_bound(min(lower, upper), input, call)
+    .check_upper_bound(max(lower, upper), input, call)
+}
+
 #' Asserts that input is factor
 #'
-#' @param input Input that is being checked for being a factor
+#' @param input Input that is being checked for being factor
 #' @param len The assumed length of the input
 #' @param null_ok If \code{TRUE}, will not assert null value
 #'

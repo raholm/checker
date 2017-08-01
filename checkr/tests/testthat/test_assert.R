@@ -43,6 +43,26 @@ test_that("assert_integer does not raise an error for valid input", {
     expect_message(assert_integer(NULL, null_ok=TRUE), NA)
 })
 
+test_that("assert_numeric raises an error for invalid input", {
+    expect_error(assert_numeric(list(a=123)))
+    expect_error(assert_numeric("test string"))
+    expect_error(assert_numeric(1, lower=2))
+    expect_error(assert_numeric(1, upper=0))
+    expect_error(assert_numeric(1, len=2))
+    expect_error(assert_numeric(NULL, null_ok=FALSE))
+})
+
+test_that("assert_numeric does not raise an error for valid input", {
+    expect_message(assert_numeric(c(-1.1, 2.253, 3.14)), NA)
+    expect_message(assert_numeric(123.123), NA)
+    expect_message(assert_numeric(-123.123), NA)
+    expect_message(assert_numeric(0), NA)
+    expect_message(assert_numeric(0.5, lower=0.5, upper=1), NA)
+    expect_message(assert_numeric(0.5, lower=0, upper=.5), NA)
+    expect_message(assert_numeric(NULL, null_ok=TRUE), NA)
+})
+
+
 test_that("assert_logical raises an error for invalid input", {
     expect_error(assert_logical(1))
     expect_error(assert_logical(0))

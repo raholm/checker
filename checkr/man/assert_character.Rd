@@ -7,7 +7,7 @@
 assert_character(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
-\item{input}{Input that is checked for being a character}
+\item{input}{Input that is checked for being character}
 
 \item{len}{The assumed length of the input}
 

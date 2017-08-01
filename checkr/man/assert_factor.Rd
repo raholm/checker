@@ -7,7 +7,7 @@
 assert_factor(input, len = length(input), null_ok = FALSE)
 }
 \arguments{
-\item{input}{Input that is being checked for being a factor}
+\item{input}{Input that is being checked for being factor}
 
 \item{len}{The assumed length of the input}
 
