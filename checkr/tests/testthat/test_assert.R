@@ -1,3 +1,5 @@
+context("assert")
+
 test_that("assert_string raises an error for invalid input", {
     expect_error(assert_string(123))
     expect_error(assert_string(list(a="test string")))

@@ -1,3 +1,5 @@
+context("check")
+
 test_that("is_null returns false for non-null input", {
     expect_false(is_null(1))
     expect_false(is_null("a"))
